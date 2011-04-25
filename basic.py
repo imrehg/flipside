@@ -138,10 +138,9 @@ gd_client.source = 'flipside'
 gd_client.ProgrammaticLogin()
 
 ## Sidestep this for a bit, fix our spreadsheet/worksheet
-# sheetkey = PromptForSpreadsheet(gd_client)
-# workkey = PromptForWorksheet(gd_client, sheetkey)
-# data = ListGetAction(gd_client, sheetkey, workkey)
-data = gd_client.GetListFeed("tMQrGX97su_LcILqyWzJddQ", "od6")
+sheetkey = PromptForSpreadsheet(gd_client)
+workkey = PromptForWorksheet(gd_client, sheetkey)
+data = ListGetAction(gd_client, sheetkey, workkey)
 
 entry = data.entry
 total = 30
@@ -152,17 +151,5 @@ for i in xrange(total):
     if right:
         good += 1
 
+# Print final stats
 print bcolors.HEADER + ("Finished, %d good out of %d (%.1f%%)" %(good, total, 100.0*good/total)) + bcolors.ENDC
-
-# ### Simple application
-# Get list of spreadseets
-# Get list of worksheets
-# Get headers
-# Get all rows, organize internal data structure
-# Show random element + 3 wrong answers to choose from
-# Choose and update results: tries, good tries, good tries in a row (three columns)
-
-# Base number: 16
-# Every 10 the row halves it:
-# 10->8, 20->4, 30->2, 40->1,
-# Test class:
