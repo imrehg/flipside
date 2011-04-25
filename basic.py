@@ -79,7 +79,7 @@ def getChoice(entry):
     guesses = [entry[i] for i in gnum]
     order = range(0, 4)
     random.shuffle(order)
-    print u"Word: %s (%s)" %(guesses[0].custom['chinese'].text, guesses[0].custom['pronounciation'].text)
+    print bcolors.HEADER + (u"Word: %s (%s)" %(guesses[0].custom['chinese'].text, guesses[0].custom['pronounciation'].text)) + bcolors.ENDC
     print "".join([u"%d) %s  " %(i+1, guesses[order[i]].custom['english'].text) for i in range(0, 4)])
     try:
         gval = int(raw_input("? "))-1
@@ -90,9 +90,9 @@ def getChoice(entry):
     except:
         right = False
     if right:
-        print "Yeah!"
+        print bcolors.OKGREEN + "Yeah!" + bcolors.ENDC
     else:
-        print "Nope, it was: %s" %(guesses[0].custom['english'].text)
+        print bcolors.FAIL + ("Nope, it was: %s" %(guesses[0].custom['english'].text)) + bcolors.ENDC
     print
 
     newscore = updateScore(guesses[0], right)
@@ -102,6 +102,22 @@ def getChoice(entry):
     ## Got to update our info with the latest data
     entry[gnum[0]] = newentry
     return entry, right
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
 
 gd_client = gdata.spreadsheet.service.SpreadsheetsService()
 gd_client.email = secrets.email
@@ -124,7 +140,7 @@ for i in xrange(total):
     if right:
         good += 1
 
-print "Finished, %d good out of %d (%.1f%%)" %(good, total, 100.0*good/total)
+print bcolors.HEADER + ("Finished, %d good out of %d (%.1f%%)" %(good, total, 100.0*good/total)) + bcolors.ENDC
 
 # ### Simple application
 # Get list of spreadseets
