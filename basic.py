@@ -9,9 +9,14 @@ import gdata.service
 import atom.service
 import gdata.spreadsheet
 import atom
-import secrets
 import string
 import random
+import getpass
+try:
+  import secrets
+except ImportError:
+  secrets = None
+
 
 def PrintFeed(feed):
   for i, entry in enumerate(feed.entry):
@@ -120,8 +125,15 @@ class bcolors:
         self.ENDC = ''
 
 gd_client = gdata.spreadsheet.service.SpreadsheetsService()
-gd_client.email = secrets.email
-gd_client.password = secrets.password
+# Make email/password file optional
+try:
+  gd_client.email = secrets.email
+except:
+  gd_client.email = raw_input("Email: ")
+try:
+  gd_client.password = secrets.password
+except:
+  gd_client.password = getpass.getpass()
 gd_client.source = 'flipside'
 gd_client.ProgrammaticLogin()
 
