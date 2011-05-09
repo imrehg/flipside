@@ -22,9 +22,10 @@ choice questions or other puzzles that help you practice
 Interfaces
 ----------
 
-* basic: command line interface for multiple choice questions
-* standalone: single html file that implements the functions of basic in a browser
-* dotflipside: website version that can be hosted and more users can have access in the same time
+* basic: command line interface for multiple choice questions (done)
+* standalone: single html file that implements the functions of basic in a browser (exploration)
+* dotflipside: website version that can be hosted and more users can have access in the same time (planning)
+* addon: Google Docs addon for in-interface usage
 
 
 Contributing
