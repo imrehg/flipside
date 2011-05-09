@@ -1,0 +1,12 @@
+* Workflow
+** Login to Google
+   http://code.google.com/apis/spreadsheets/data/3.0/developers_guide.html#ListFeeds
+   * Store login in localstorage on user's computer
+   * Check if exists / still valid, and use that; provide logut
+** Choose spreadsheet
+   * Remember last choice and use that, allow switch to different page / doc
+** Run puzzle
+   * Choose puzzle direction (Col1 / Col2), default (Col2 -> Col1_choices)
+   * Allow length of series to be adjusted: 15 / 30 / 50 / 100 / Infinite
+   * Show stats during iteration
+   * Database stats update in the background asynchronously? Can do just cell update?
